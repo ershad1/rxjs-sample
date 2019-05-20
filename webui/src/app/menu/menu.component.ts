@@ -3,23 +3,23 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AuthenticationService} from '../service/authentication.service';
 
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+	selector: 'app-menu',
+	templateUrl: './menu.component.html',
+	styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  isLoggedIn = false;
+	isLoggedIn = false;
 
-  constructor(private route: ActivatedRoute,
-              private router: Router,
-              private authenticationService: AuthenticationService) {
-  }
+	constructor(private route: ActivatedRoute,
+	            private router: Router,
+	            private authenticationService: AuthenticationService) {
+	}
 
-  ngOnInit() {
-    this.isLoggedIn = this.authenticationService.isUserLoggedIn();
-  }
+	ngOnInit() {
+		this.isLoggedIn = this.authenticationService.isUserLoggedIn();
+	}
 
-  handleLogout() {
-    this.authenticationService.logout();
-  }
+	handleLogout() {
+		this.authenticationService.logout();
+	}
 }

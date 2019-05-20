@@ -3,37 +3,38 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AuthenticationService} from '../service/authentication.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+	selector: 'app-login',
+	templateUrl: './login.component.html',
+	styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  username = 'in28minutes';
-  password = '';
-  errorMessage = 'Invalid Credentials';
-  invalidLogin = false;
-  loginSuccess = false;
-  returnUrl: string;
+	username = 'in28minutes';
+	password = 'dummy';
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private authenticationService: AuthenticationService) {
-  }
+	errorMessage = 'Invalid Credentials';
+	invalidLogin = false;
+	loginSuccess = false;
+	returnUrl: string;
 
-  ngOnInit() {
-    // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/courses';
-  }
+	constructor(
+		private route: ActivatedRoute,
+		private router: Router,
+		private authenticationService: AuthenticationService) {
+	}
 
-  handleLogin() {
-    this.authenticationService.executeJwtAuthenticationService(this.username, this.password).subscribe((res) => {
-      this.invalidLogin = false;
-      this.loginSuccess = true;
-      this.router.navigate([this.returnUrl]);
-    }, () => {
-      this.invalidLogin = true;
-      this.loginSuccess = false;
-    });
-  }
+	ngOnInit() {
+		// get return url from route parameters or default to '/'
+		this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/courses';
+	}
+
+	handleLogin() {
+		this.authenticationService.executeJwtAuthenticationService(this.username, this.password).subscribe((res) => {
+			this.invalidLogin = false;
+			this.loginSuccess = true;
+			this.router.navigate([this.returnUrl]);
+		}, () => {
+			this.invalidLogin = true;
+			this.loginSuccess = false;
+		});
+	}
 }
