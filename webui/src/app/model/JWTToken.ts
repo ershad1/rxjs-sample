@@ -1,5 +1,4 @@
 export class JWTToken {
-    constructor(public token: string) {
-
-    }
+  constructor(public token: string) {
+  }
 }
